@@ -94,10 +94,12 @@ class FLOSSTest(pytest.Item):
 
         test_shellcode = self.spec.get("Test shellcode")
         if test_shellcode:
+            print("Testing shellcode")
             with open(test_path, "rb") as f:
                 shellcode_data = f.read()
             vw = viv_utils.getShellcodeWorkspace(shellcode_data)  # TODO provide arch from test.yml
             found_strings = set(extract_strings(vw))
+            print("Found strings: %s", found_strings)
         else:
             vw = viv_utils.getWorkspace(test_path)
             found_strings = set(extract_strings(vw))
