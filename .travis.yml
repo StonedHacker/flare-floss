@@ -39,7 +39,7 @@ install:
 script:
     - find . -name \*.py -exec pep8 --ignore=E501 {} \;
     # haven't figured how to build wclang on osx yet, so no tests
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then py.test tests/src/ -v; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then py.test tests/src/ -vv; ls -lR tests/src/shellcode-stackstrings/; fi
 
 addons:
     artifacts:
