@@ -97,9 +97,14 @@ class FLOSSTest(pytest.Item):
             print("Testing shellcode")
             with open(test_path, "rb") as f:
                 shellcode_data = f.read()
-            vw = viv_utils.getShellcodeWorkspace(shellcode_data)  # TODO provide arch from test.yml
+            try:
+                print("shellcode_data: ", shellcode_data[:10])
+                vw = viv_utils.getShellcodeWorkspace(shellcode_data)  # TODO provide arch from test.yml
+            except Exception as e:
+                print("Failed to generate workspace: %s" % e)
+            print("Generated workspace")
             found_strings = set(extract_strings(vw))
-            print("Found strings: %s", found_strings)
+            print("Found strings: %s" % found_strings)
         else:
             vw = viv_utils.getWorkspace(test_path)
             found_strings = set(extract_strings(vw))
