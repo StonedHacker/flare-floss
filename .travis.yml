@@ -26,6 +26,8 @@ before_install:
 
 install:
     - pip install https://github.com/williballenthin/vivisect/zipball/master
+    # install most current version directly from GitHub
+    - pip install https://github.com/williballenthin/viv-utils/zipball/master
     - pip install pyinstaller pep8
     - echo "__version__ = '$(git describe --tags)'" > floss/version.py
     - pip install -e .
